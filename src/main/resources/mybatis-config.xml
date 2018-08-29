@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!--一般把setting陪在配置文件里 比如驼峰命名转换开启-->
+    <settings>
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+    </settings>
+    
+    <typeAliases>
+        <!--配置包名的别名 ？？就是bean？？-->
+        <package name="com.nju.crud.bean"/>
+    </typeAliases>
+    <!--注册分页插件-->
+    <plugins>
+        <!--坑：自4.0.0版本以后就不再实现pagehelper.PageHelper了，转而实现这个接口：org.apache.ibatis.plugin.Interceptor-->
+        <plugin interceptor="com.github.pagehelper.PageInterceptor">
+            <!--分页合理化 访问的页数不能小于0 大于总页数-->
+            <property name="reasonable" value="true"></property>
+        </plugin>
+    </plugins>
+</configuration>
